@@ -14,8 +14,14 @@ J = 0;
 %               You should set J to the cost.
 
 
+% Loop implementation
+%for i = 1:m,
+%	J = J + (((X(i,:) * theta) - y(i)) ^ 2);
+%end;
 
-
+% Vectorized implementation
+J = sum(((X * theta) - y) .^ 2);
+J = 1 / (2 * m) * J;
 
 % =========================================================================
 

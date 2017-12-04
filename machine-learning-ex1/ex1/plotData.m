@@ -17,7 +17,7 @@ figure; % open a new figure window
 %       markers larger by using plot(..., 'rx', 'MarkerSize', 10);
 
 
-plot(x, y, 'rx', MarkerSize',10);
+plot(x, y, 'rx', 'MarkerSize',10);
 ylabel('Profix in $10,000s')
 xlabel('population of City in 10,000s')
 
