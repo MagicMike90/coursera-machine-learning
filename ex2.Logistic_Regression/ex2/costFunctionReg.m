@@ -18,7 +18,17 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+% calculate cost function
+h = sigmoid(X*theta);
+% calculate penalty
+% excluded the first theta value: indexing starts from 1, hence, you should not be regularizing
+% the theta(1) parameter (which corresponds to 0) in the code.
+theta1 = [0 ; theta(2:size(theta), :)];
+p = lambda * (theta1' * theta1) / (2 * m);
+J = ((-y)'*log(h) - (1-y)'*log(1-h))/m + p;
 
+% calculate grads
+grad = (X'*(h - y)+lambda * theta1) / m;
 
 
 
