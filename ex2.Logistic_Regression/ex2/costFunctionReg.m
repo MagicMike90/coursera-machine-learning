@@ -24,6 +24,8 @@ h = sigmoid(X*theta);
 % excluded the first theta value: indexing starts from 1, hence, you should not be regularizing
 % the theta(1) parameter (which corresponds to 0) in the code.
 theta1 = [0 ; theta(2:size(theta), :)];
+
+% A loop over all rows is equivalent to multiplication by X` 
 p = lambda * (theta1' * theta1) / (2 * m);
 J = ((-y)'*log(h) - (1-y)'*log(1-h))/m + p;
 
