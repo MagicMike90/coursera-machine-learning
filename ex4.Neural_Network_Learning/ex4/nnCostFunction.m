@@ -85,7 +85,25 @@ p = sum(sum(Theta1(:, 2:end) .^ 2, 2)) + sum(sum(Theta2(:, 2:end) .^ 2, 2));
 J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m + lambda * p/(2 * m);
 
 
+% For each output unit k in layer 3 (the output layer), set
+sigma3 = a3 - Y;
+% For the hidden layer l = 2, set
+sigma2 = (sigma3 * Theta2) .* sigmoidGradient([ones(size(z2, 1), 1) z2]);
+% Note that you should skip or remove sigma(0)
+sigma2 = sigma2(:, 2:end);
 
+% accumulate gradients
+delta_1 = (sigma2' * a1);
+delta_2 = (sigma3' * a2);
+
+% calculate regularized gradient
+% Note that you should not be regularizing the 
+% rst column of (l) which
+% is used for the bias term.
+p1 = (lambda / m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p2 = (lambda / m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
+Theta1_grad = delta_1./m + p1;
+Theta2_grad = delta_2./m + p2;
 
 
 % -------------------------------------------------------------
