@@ -22,7 +22,7 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-
+% The matrix X contains the examples in rows, add the column of 1's to the matrix.
 a1 = [ones(m, 1) X];
 z2 = a1 * Theta1';
 a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
@@ -30,11 +30,6 @@ z3 = a2 * Theta2';
 a3 = sigmoid(z3);
 
 [p_max, p] = max(a3, [], 2);
-
-
-
-
-
 
 % =========================================================================
 
