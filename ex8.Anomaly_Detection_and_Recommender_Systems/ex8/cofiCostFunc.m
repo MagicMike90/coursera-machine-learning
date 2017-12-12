@@ -47,7 +47,7 @@ diff = diff .* R;
 X_grad = diff * Theta;               
 Theta_grad = diff' * X;              
 
-% transfer vector to matrix
+% convert matrix to vector
 J = sum(diff(:) .^2) / 2;
 % regularized term of x.
 J = J + lambda * sum(sum(X .^ 2))/2;   
