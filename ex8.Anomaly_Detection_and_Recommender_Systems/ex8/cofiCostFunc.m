@@ -40,18 +40,23 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+diff = (X * Theta' - Y);
+diff = diff .* R;
 
+% unregularized vectorized implementation
+X_grad = diff * Theta;               
+Theta_grad = diff' * X;              
 
+% transfer vector to matrix
+J = sum(diff(:) .^2) / 2;
+% regularized term of x.
+J = J + lambda * sum(sum(X .^ 2))/2;   
+% regularized term of theta.
+J = J + lambda * sum(sum(Theta .^ 2))/2; 
 
-
-
-
-
-
-
-
-
-
+% regularized
+X_grad = X_grad + (lambda * X);             
+Theta_grad = Theta_grad + (lambda * Theta); 
 
 
 
